@@ -1,0 +1,3 @@
+function emptyForm() {
+    $('.empty').val('');
+}
