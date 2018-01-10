@@ -5,9 +5,9 @@ var path            = require("path");
 var mongoose        = require("mongoose");
 
 
-// Connec to MongoDB database
+// Connect to MongoDB database
 //mongoose.connect("mongodb://localhost/guests", {useMongoClient: true});
-var connection = mongoose.connect("mongodb:////sara:therawman@ds247317.mlab.com:47317/guests", {useMongoClient: true});
+var connection = mongoose.connect("mongodb://sara:therawman@ds247317.mlab.com:47317/guests", {useMongoClient: true});
 
 
 
