@@ -1,0 +1,11 @@
+.imageDiv { /* Bakgrundsbild */
+    background-image: url("../images/tiger.jpg");
+    background-size:100%;
+  
+}
+
+.whitebackground { /* Bakgrund för textarea*/
+    background-color: white;
+    opacity: 0.88;
+    padding: 5%;
+}

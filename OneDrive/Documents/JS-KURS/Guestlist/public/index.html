@@ -8,21 +8,30 @@
     <title>Gästlista</title>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+      <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+        
 
 
 </head>
 
-<body>
-    <div data-ng-app="guestsApp" data-ng-cloak data-ng-controller="guestsCtrl" style="margin-top: 2em;">
+<body data-ng-app="guestsApp" data-ng-cloak data-ng-controller="guestsCtrl">
+        <div class="imageDiv"> 
+        <nav>
+                <div class="nav-wrapper black">
+                  <a href="#!" class="brand-logo center">{{eventName}}</a>
+                  
+                </div>
+              </nav>
+       
+    <div class="container whitebackground">
 
-        <input type="text" name="eventName" ng-model="eventName" data-ng-init="eventName='Ditt eventnamn'">
-   
-   
-        
-
-        <h2 style="margin-top: 1em;">{{eventName}}</h2>
-        
-        <div>
+      <div>
        
 
             <form name="form">
@@ -30,7 +39,8 @@
                 <input type="text" class="empty" data-ng-required="true" name="name" data-ng-model="name" />
                 <p>Notering:</p>
                 <input type="text" class="empty" name="note" data-ng-model="note" />
-                <button onclick="emptyForm()" data-ng-click="addGuest(name, note)">Lägg till gäst</button>
+                <a onclick="emptyForm()" data-ng-click="addGuest(name, note)" class="waves-effect waves-light btn"><i class="material-icons left">add</i>Lägg till gäst</a>
+                
 
             </form>
             <p>{{msg}}</p>
@@ -39,7 +49,7 @@
         <br>
 
         <div>
-            <table style="width: 100%;">
+            <table class="collection" style="width: 100%;">
                 <thead>
                     <tr>
                         <td data-ng-click="orderByMe('status'); toggleOrder()">
@@ -58,11 +68,13 @@
                     </tr>
 
                 </thead>
+
+                <h2 class="brand-logo center">Gästlista</h2>
                 <div class='filter'>
                     <form>
-                        <label>Filtrera på sökning:&nbsp;
+                        <p>Filtrera på sökning:</p>
                             <input type="text" data-ng-model="filterQuery" placeholder="Filter...">
-                        </label>
+                        
         
                         <a data-ng-model="date" data-ng-repeat="guests in guestscope | filter:filterDate | orderBy: 'created'"></a>
         
@@ -70,31 +82,46 @@
         
                 </div>  
                 <!-- /.filter -->
-                <tr data-ng-repeat="guests in guestscope | filter:filterQuery | orderBy:myOrderBy:orderVariable">
+                <tr class="collection-item" data-ng-repeat="guests in guestscope | filter:filterQuery | orderBy:myOrderBy:orderVariable">
 
                     <td>
-                        <input type="checkbox" data-ng-click="checkGuest(guests._id, guests.status)" data-ng-model="guests.status">
+                           
+                    
+                        <input type="checkbox" id="{{ guests._id }}" data-ng-click="checkGuest(guests._id, guests.status)" data-ng-model="guests.status">
+                        <label for="{{ guests._id }}"></label>
                     </td>
 
                     <td>{{ guests.name }}</td>
                     <td>{{ guests.created }}</td>
                     <td>{{ guests.note }}</td>
                     <td>
-                        <button data-ng-click="remove(guests._id)">Radera</button>
+                      
+                        <a data-ng-click="remove(guests._id)" class="red btn"><i class="material-icons">delete</i></a>
+                        
+                        
                     </td>
                 </tr>
             </table>
-            <p>Antal gäster: {{guestscope.length}}</p><button data-ng-click="removeAll()">Töm lista</button>
+
+            <div class="row ">
+                    <div class="col s2">
+            <p>Antal gäster: {{guestscope.length}}</p>
+                    </div>
+                    <div class="col s1"></div>
+            
+            <a data-ng-click="removeAll()" class="waves-effect red btn"><i class="material-icons left">delete</i>Töm lista</a>
+            </div>
+
+            </div>
+            <input type="text" name="eventName" ng-model="eventName" data-ng-init="eventName='Ditt eventnamn'">
         </div>
 
 
-        <footer>
-            <p>Denna laboration läser data från en REST-webbtjänst baserad på Node.js och MongoDB</p>
-        </footer>
-
+        
     </div>
     <!-- /.container -->
 
+   
     <!-- Controller -->
    
     <script src="js/controllers/guestsController.js"></script>
@@ -102,5 +129,32 @@
    
 
 </body>
+</div>  <!-- /imagediv --> 
+
+<footer class="page-footer black">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+        
+          <p class="grey-text text-lighten-4">En REST-webbtjänst baserad på Node.js och MongoDB</p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <h5 class="white-text">Links</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      © 2018 Copyright Sara Klasson
+      
+      </div>
+    </div>
+  </footer>
 
 </html>
