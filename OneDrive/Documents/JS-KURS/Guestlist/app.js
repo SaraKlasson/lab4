@@ -6,8 +6,10 @@ var mongoose        = require("mongoose");
 
 
 // Connec to MongoDB database
-mongoose.connect("mongodb://localhost/guests", {useMongoClient: true});
-//var connection = mongoose.connect("mongodb://sakl:password@ds131137.mlab.com:31137/guests", {useMongoClient: true});
+//mongoose.connect("mongodb://localhost/guests", {useMongoClient: true});
+var connection = mongoose.connect("mongodb:////sara:therawman@ds247317.mlab.com:47317/guests", {useMongoClient: true});
+
+
 
 mongoose.Promise = global.Promise;
 
